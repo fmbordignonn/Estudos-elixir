@@ -1,4 +1,4 @@
-defmodule Fizzbuzz.MixProject do
+defmodule FizzBuzz.MixProject do
   use Mix.Project
 
   def project do
