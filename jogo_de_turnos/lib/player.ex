@@ -1,7 +1,7 @@
 defmodule JogoDeTurnos.Player do
   # Variável de módulo, tipo uma constante
   # Pra não precisar ficar repetindo as chaves em enforce_keys e defstruct
-  @keys [:name, :life, :attack_avg, :attack_rnd, :self_heal]
+  @keys [:name, :life, :moves]
 
   @max_life 100
 
@@ -12,9 +12,11 @@ defmodule JogoDeTurnos.Player do
     %JogoDeTurnos.Player{
       name: name,
       life: @max_life,
-      attack_avg: attack_avg,
-      attack_rnd: attack_rnd,
-      self_heal: self_heal
+      moves: %{
+        attack_avg: attack_avg,
+        attack_rnd: attack_rnd,
+        self_heal: self_heal
+      }
     }
   end
 end

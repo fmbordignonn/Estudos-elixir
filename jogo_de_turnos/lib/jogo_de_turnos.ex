@@ -1,4 +1,5 @@
 defmodule JogoDeTurnos do
+  alias JogoDeTurnos.Game.Actions
   alias JogoDeTurnos.Game.Status
   alias JogoDeTurnos.{GameAgent, Player}
 
@@ -13,6 +14,10 @@ defmodule JogoDeTurnos do
     |> create_player(:punch, :kick, :heal)
     |> GameAgent.start(player)
 
-    Status.print_current_round_message()
+    Status.print_start_message()
+  end
+
+  def make_move(move) do
+    Actions.get_move(move)
   end
 end
