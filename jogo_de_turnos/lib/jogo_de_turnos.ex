@@ -18,6 +18,16 @@ defmodule JogoDeTurnos do
   end
 
   def make_move(move) do
-    Actions.get_move(move)
+    move
+    |> Actions.get_move()
+    |> execute_move()
   end
+
+  defp execute_move({:error, move}), do: Status.print_wrong_move(move)
+
+  # Consegui matar o case antes da aula heheheheheh
+
+  defp execute_move({:ok, :attack_avg}), do: IO.puts("Ataque basico")
+  defp execute_move({:ok, :attack_rnd}), do: IO.puts("Ataque pesado")
+  defp execute_move({:ok, :self_heal}), do: IO.puts("Cura")
 end
