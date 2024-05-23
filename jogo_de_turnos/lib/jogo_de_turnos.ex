@@ -2,6 +2,7 @@ defmodule JogoDeTurnos do
   alias JogoDeTurnos.Game.Actions
   alias JogoDeTurnos.Game.Status
   alias JogoDeTurnos.{GameAgent, Player}
+  alias JogoDeTurnos.Actions.Attack
 
   @computer_name "Computador"
 
@@ -27,7 +28,7 @@ defmodule JogoDeTurnos do
 
   # Consegui matar o case antes da aula heheheheheh
 
-  defp execute_move({:ok, :attack_avg}), do: IO.puts("Ataque basico")
-  defp execute_move({:ok, :attack_rnd}), do: IO.puts("Ataque pesado")
+  defp execute_move({:ok, :attack_avg}), do: Actions.attack(:attack_avg)
+  defp execute_move({:ok, :attack_rnd}), do: Actions.attack(:attack_rnd)
   defp execute_move({:ok, :self_heal}), do: IO.puts("Cura")
 end

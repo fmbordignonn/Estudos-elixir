@@ -17,4 +17,8 @@ defmodule JogoDeTurnos.GameAgent do
   end
 
   def get_player, do: Map.get(info(), :player)
+
+  def get_turn, do: Map.get(info(), :turn)
+
+  def fetch_player_data(player), do: Map.get(info(), player)
 end
