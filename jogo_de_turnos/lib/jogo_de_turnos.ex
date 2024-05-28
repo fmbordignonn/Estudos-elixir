@@ -2,7 +2,6 @@ defmodule JogoDeTurnos do
   alias JogoDeTurnos.Game.Actions
   alias JogoDeTurnos.Game.Status
   alias JogoDeTurnos.{GameAgent, Player}
-  alias JogoDeTurnos.Actions.Attack
 
   @computer_name "Computador"
 
