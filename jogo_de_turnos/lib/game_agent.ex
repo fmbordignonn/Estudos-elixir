@@ -39,5 +39,4 @@ defmodule JogoDeTurnos.GameAgent do
 
   defp update_turn(%{turn: :player} = state), do: Map.put(state, :turn, :computer)
   defp update_turn(%{turn: :computer} = state), do: Map.put(state, :turn, :player)
-  # parei a aula nos 9min
 end

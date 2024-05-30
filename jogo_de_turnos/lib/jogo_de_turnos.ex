@@ -14,18 +14,18 @@ defmodule JogoDeTurnos do
     |> create_player(:punch, :kick, :heal)
     |> GameAgent.start(player)
 
-    Status.print_start_message()
+    Status.print_round_message(GameAgent.info())
   end
 
   def make_move(move) do
     move
     |> Actions.get_move()
     |> execute_move()
+
+    Status.print_round_message(GameAgent.info())
   end
 
   defp execute_move({:error, move}), do: Status.print_wrong_move(move)
-
-  # Consegui matar o case antes da aula heheheheheh
 
   defp execute_move({:ok, :attack_avg}), do: Actions.attack(:attack_avg)
   defp execute_move({:ok, :attack_rnd}), do: Actions.attack(:attack_rnd)

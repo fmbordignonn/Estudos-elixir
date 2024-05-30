@@ -1,9 +1,19 @@
 defmodule JogoDeTurnos.Game.Status do
-  alias JogoDeTurnos.GameAgent
-
-  def print_start_message do
+  def print_round_message(%{status: :game_start} = info) do
     IO.puts("\n ===== The game has started! =====\n")
-    IO.inspect(GameAgent.info())
+    IO.inspect(info)
+    IO.puts("------------------------------")
+  end
+
+  def print_round_message(%{status: :continue, turn: player} = info) do
+    IO.puts("\n ===== It's #{player} turn. =====\n")
+    IO.inspect(info)
+    IO.puts("------------------------------")
+  end
+
+  def print_round_message(%{status: :game_over} = info) do
+    IO.puts("\n ===== The game is over! =====\n")
+    IO.inspect(info)
     IO.puts("------------------------------")
   end
 
