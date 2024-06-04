@@ -24,4 +24,7 @@ defmodule JogoDeTurnos.Game.Status do
 
   def print_move_executed_message(:player, :attack, damage),
     do: IO.puts("\n ===== Computer attacked player for #{damage} damage! =====\n")
+
+  def print_move_executed_message(player, :heal, life),
+    do: IO.puts("\n ===== #{player} healed to #{life}! =====\n")
 end

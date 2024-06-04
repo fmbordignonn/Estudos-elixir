@@ -1,6 +1,6 @@
 defmodule JogoDeTurnos.Game.Actions do
   alias JogoDeTurnos.GameAgent
-  alias JogoDeTurnos.Actions.Attack
+  alias JogoDeTurnos.Actions.{Attack, Heal}
 
   def get_move(move) do
     GameAgent.get_player()
@@ -14,6 +14,13 @@ defmodule JogoDeTurnos.Game.Actions do
     case GameAgent.get_turn() do
       :player -> Attack.attack(:computer, move)
       :computer -> Attack.attack(:player, move)
+    end
+  end
+
+  def heal do
+    case GameAgent.get_turn() do
+      :player -> Heal.heal(:player)
+      :computer -> Heal.heal(:computer)
     end
   end
 end
