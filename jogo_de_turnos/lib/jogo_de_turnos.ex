@@ -6,9 +6,8 @@ defmodule JogoDeTurnos do
   @computer_name "Computador"
   @computer_moves [:attack_avg, :attack_rnd, :self_heal]
 
-  def create_player(name, attack_avg, attack_rnd, self_heal) do
-    Player.build(name, attack_avg, attack_rnd, self_heal)
-  end
+  def create_player(name, attack_avg, attack_rnd, self_heal),
+    do: Player.build(name, attack_avg, attack_rnd, self_heal)
 
   def start_game(player) do
     @computer_name
