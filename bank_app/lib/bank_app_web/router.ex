@@ -13,6 +13,7 @@ defmodule BankAppWeb.Router do
     pipe_through :api
 
     get "/", WelcomeController, :index
+    resources "/users", UsersController, only: [:create, :update, :delete, :show]
   end
 
   # Enable LiveDashboard in development

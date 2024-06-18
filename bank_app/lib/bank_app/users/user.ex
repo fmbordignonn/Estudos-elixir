@@ -2,10 +2,11 @@ defmodule BankApp.Users.User do
   use Ecto.Schema
   import Ecto.Changeset
 
-  @fields [:name, :password_hash, :email, :cep]
+  @fields [:name, :password, :email, :cep]
 
   schema "users" do
     field :name, :string
+    field :password, :string, virtual: true
     field :password_hash, :string
     field :email, :string
     field :cep, :string
@@ -23,9 +24,16 @@ defmodule BankApp.Users.User do
     |> cast(params, @fields)
     |> validate_required(@fields)
     |> validate_length(:name, min: 3)
-    |> validate_format(:email, ~r'/@/')
+    |> validate_format(:email, ~r/@/)
     |> validate_length(:cep, is: 8)
+    |> add_pwd_hash()
   end
+
+  defp add_pwd_hash(%Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset) do
+    change(changeset, %{password_hash: Pbkdf2.hash_pwd_salt(password)})
+  end
+
+  defp add_pwd_hash(changeset), do: changeset
 end
 
 #  changeset = BankApp.Users.User.changeset(%{name: "oie", password_hash: "aaa", email: "asd@gmail", cep: "12345678"})
