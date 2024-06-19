@@ -26,6 +26,8 @@ defmodule BankApp.Users.User do
     |> validate_length(:name, min: 3)
     |> validate_format(:email, ~r/@/)
     |> validate_length(:cep, is: 8)
+    # ue n pegou
+    # |> unique_constraint(:email)
     |> add_pwd_hash()
   end
 
