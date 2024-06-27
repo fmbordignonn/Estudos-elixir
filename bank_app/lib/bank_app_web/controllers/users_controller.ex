@@ -13,25 +13,19 @@ defmodule BankAppWeb.UsersController do
     # pode se ter varios withs dentro de uma mesma funçao
     with {:ok, %User{} = user} <- Users.create(params) do
       conn
-      |> put_status(201)
+      |> put_status(:created)
       |> render(:create_ok_response, user: user)
     end
   end
 
-  # pode ser usado dessa forma.... mas acaba se tornando insustentável a longo prazo
-  # o ideal mesmo é um fallback controller
-
-  # defp handle_response({:ok, user}, conn) do
-  #   conn
-  #   |> put_status(201)
-  #   |> render(:create_ok_response, user: user)
-  # end
-
-  # defp handle_response({:error, changeset}, conn) do
-  #   conn
-  #   |> put_status(400)
-  #   |> put_view(json: BankAppWeb.ErrorJSON)
-  #   |> render(:error, changeset: changeset)
+  # pra receber parametros no controller precisa ser por string e não atom
+  def show(conn, %{"id" => id}) do
+    with {:ok, %User{} = user} <- Users.get(id) do
+      conn
+      |> put_status(:ok)
+      |> render(:get, user: user)
+    end
+  end
 
   #   # error.json é o padrão
   #   # |> render("error.json", error: error)
