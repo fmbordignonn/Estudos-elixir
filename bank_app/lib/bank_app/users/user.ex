@@ -4,6 +4,8 @@ defmodule BankApp.Users.User do
 
   @fields [:name, :password, :email, :cep]
 
+  # pode ser uma alternativa a chamar uma função data dentro de users_json
+  # @derive {Jason.Encoder, only: [:name]}
   schema "users" do
     field :name, :string
     field :password, :string, virtual: true

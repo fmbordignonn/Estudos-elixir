@@ -27,6 +27,14 @@ defmodule BankAppWeb.UsersController do
     end
   end
 
+  def update(conn, params) do
+    with {:ok, %User{} = user} <- Users.update(params) do
+      conn
+      |> put_status(:ok)
+      |> render(:update, user: user)
+    end
+  end
+
   #   # error.json é o padrão
   #   # |> render("error.json", error: error)
   # end
